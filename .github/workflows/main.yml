@@ -1,1 +1,37 @@
+acciones/deploy-pages@v4
 
+acciones/deploy-pages@v4nombreImplemente PWA estática en páginas de GitHub:
+  push:
+    sucursales: ["principal"] # Cambia a "master" si tu rama principal usa ese nombre
+  flujo de trabajo_despacho:
+
+permisos:
+  contenidos: leer
+  páginas: escribir
+  id-token: escribir
+
+concurrencia:
+  grupo: "páginas"
+  cancelación en curso: falso
+
+empleo:
+  implementar:
+    medio ambiente:
+      nombre: páginas de github
+      url: ${{ pasos.implementación.salidas.página_url }}
+    run-on: ubuntu-último
+    pasos:
+      - nombre: Verificar repositorio
+        usos: acciones/checkout@v4
+
+      - nombre: Configuración del entorno de páginas
+        usos: acciones/configure-pages@v4
+
+      - nombre: Subir archivos raíz como artefacto
+        usos: acciones/upload-pages-artifact@v3
+        con:
+          camino: '.'
+
+      - nombre: Implementar en páginas de GitHub
+        id: despliegue
+        usos: acciones/deploy-pages@v4
