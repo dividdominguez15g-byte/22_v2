@@ -1,6 +1,6 @@
 {
   "name": "Gemini TTS Studio",
   "description": "Studio profesional de conversión de texto a voz (Text-to-Speech) impulsado por Google Gemini AI.",
-  "requestFramePermissions": ["microphone"],
+  "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

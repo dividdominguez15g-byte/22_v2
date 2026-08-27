@@ -253,6 +253,31 @@ Instrucciones:
   }
 });
 
+// Explicit PWA Service Worker & Manifest routes with optimal headers
+app.get('/sw.js', (req, res, next) => {
+  res.setHeader('Service-Worker-Allowed', '/');
+  res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+  res.setHeader('Content-Type', 'application/javascript; charset=utf-8');
+  const swPath = path.join(process.cwd(), 'public', 'sw.js');
+  res.sendFile(swPath, (err) => {
+    if (err) {
+      // Fallback to root sw.js if public/sw.js not accessible
+      res.sendFile(path.join(process.cwd(), 'sw.js'), next);
+    }
+  });
+});
+
+app.get('/manifest.json', (req, res, next) => {
+  res.setHeader('Content-Type', 'application/manifest+json; charset=utf-8');
+  res.setHeader('Cache-Control', 'public, max-age=3600');
+  const manifestPath = path.join(process.cwd(), 'public', 'manifest.json');
+  res.sendFile(manifestPath, (err) => {
+    if (err) {
+      res.sendFile(path.join(process.cwd(), 'manifest.json'), next);
+    }
+  });
+});
+
 // Start server with Vite middleware in dev or static files in prod
 async function startServer() {
   if (process.env.NODE_ENV !== 'production') {
