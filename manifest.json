@@ -1,0 +1,16 @@
+{
+  "nombre": "Gemini TTS Studio",
+  "nombre_corto": "Estudio TTS",
+  "start_url": "/gemini-tts-studio/",
+  "alcance": "/gemini-tts-studio/",
+  "mostrar": "independiente",
+  "color_fondo": "#0d1117",
+  "theme_color": "#1f6feb",
+  "iconos": [
+    {
+      "src": "icon.svg",
+      "tamaños": "cualquiera",
+      "tipo": "imagen/svg+xml"
+    }
+  ]
+}
