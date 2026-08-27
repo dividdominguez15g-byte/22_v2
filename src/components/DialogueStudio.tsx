@@ -153,7 +153,7 @@ export const DialogueStudio: React.FC<DialogueStudioProps> = ({
   return (
     <div id="dialogue-studio" className="space-y-6">
       {/* Header Banner */}
-      <div className="bg-gradient-to-r from-slate-900 via-indigo-950/40 to-slate-900 p-6 rounded-2xl border border-indigo-500/20 shadow-xl relative overflow-hidden">
+      <div className="bg-gradient-to-r from-slate-900/75 via-indigo-950/40 to-slate-900/75 backdrop-blur-md p-6 rounded-2xl border border-indigo-500/25 shadow-xl relative overflow-hidden">
         <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
@@ -172,12 +172,12 @@ export const DialogueStudio: React.FC<DialogueStudioProps> = ({
 
           {/* Quick Presets */}
           <div className="flex flex-wrap items-center gap-1.5 self-start md:self-auto">
-            <span className="text-xs text-slate-400 font-medium mr-1">Plantillas:</span>
+            <span className="text-xs text-slate-300 font-medium mr-1">Plantillas:</span>
             {SAMPLE_DIALOGUES.map((sample) => (
               <button
                 key={sample.title}
                 onClick={() => handleLoadSample(sample)}
-                className="px-2.5 py-1 rounded-lg bg-slate-800/80 hover:bg-indigo-900/40 hover:border-indigo-500/40 text-slate-300 hover:text-white text-xs font-medium border border-slate-700 transition-all"
+                className="px-2.5 py-1 rounded-lg bg-slate-800/60 hover:bg-indigo-900/50 hover:border-indigo-500/40 text-slate-200 hover:text-white text-xs font-medium border border-slate-700/80 backdrop-blur-sm transition-all cursor-pointer"
               >
                 {sample.title}
               </button>
@@ -189,10 +189,10 @@ export const DialogueStudio: React.FC<DialogueStudioProps> = ({
       {/* Speaker Roles Configuration */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Speaker 1 Card */}
-        <div className="bg-slate-900/90 border border-slate-800 p-4 rounded-2xl shadow-md space-y-3">
+        <div className="bg-slate-900/70 backdrop-blur-md border border-slate-750/80 p-4 rounded-2xl shadow-md space-y-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <span className="w-6 h-6 rounded-full bg-indigo-600 text-white font-bold text-xs flex items-center justify-center">
+              <span className="w-6 h-6 rounded-full bg-indigo-600 text-white font-bold text-xs flex items-center justify-center shadow-sm">
                 1
               </span>
               <span className="text-sm font-semibold text-white">Locutor 1</span>
@@ -202,24 +202,24 @@ export const DialogueStudio: React.FC<DialogueStudioProps> = ({
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="text-xs text-slate-400 block mb-1 font-medium">Nombre / Personaje</label>
+              <label className="text-xs text-slate-300 block mb-1 font-medium">Nombre / Personaje</label>
               <input
                 type="text"
                 value={speaker1.name}
                 onChange={(e) => setSpeaker1({ ...speaker1, name: e.target.value })}
-                className="w-full bg-slate-950 border border-slate-800 focus:border-indigo-500 rounded-xl px-3 py-2 text-xs text-slate-100 focus:outline-none"
+                className="w-full bg-slate-950/60 backdrop-blur-sm border border-slate-800 focus:border-indigo-500 rounded-xl px-3 py-2 text-xs text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-indigo-500/30"
                 placeholder="Ej: Alex"
               />
             </div>
             <div>
-              <label className="text-xs text-slate-400 block mb-1 font-medium">Voz Gemini</label>
+              <label className="text-xs text-slate-300 block mb-1 font-medium">Voz Gemini</label>
               <select
                 value={speaker1.voice}
                 onChange={(e) => setSpeaker1({ ...speaker1, voice: e.target.value })}
-                className="w-full bg-slate-950 border border-slate-800 focus:border-indigo-500 rounded-xl px-3 py-2 text-xs text-slate-100 focus:outline-none"
+                className="w-full bg-slate-950/60 backdrop-blur-sm border border-slate-800 focus:border-indigo-500 rounded-xl px-3 py-2 text-xs text-slate-100 focus:outline-none focus:ring-1 focus:ring-indigo-500/30"
               >
                 {voices.map((v) => (
-                  <option key={v.id} value={v.id}>
+                  <option key={v.id} value={v.id} className="bg-slate-900 text-slate-100">
                     {v.name} ({v.gender}) - {v.tag}
                   </option>
                 ))}
@@ -229,10 +229,10 @@ export const DialogueStudio: React.FC<DialogueStudioProps> = ({
         </div>
 
         {/* Speaker 2 Card */}
-        <div className="bg-slate-900/90 border border-slate-800 p-4 rounded-2xl shadow-md space-y-3">
+        <div className="bg-slate-900/70 backdrop-blur-md border border-slate-750/80 p-4 rounded-2xl shadow-md space-y-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <span className="w-6 h-6 rounded-full bg-cyan-600 text-white font-bold text-xs flex items-center justify-center">
+              <span className="w-6 h-6 rounded-full bg-cyan-600 text-white font-bold text-xs flex items-center justify-center shadow-sm">
                 2
               </span>
               <span className="text-sm font-semibold text-white">Locutor 2</span>
@@ -242,24 +242,24 @@ export const DialogueStudio: React.FC<DialogueStudioProps> = ({
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="text-xs text-slate-400 block mb-1 font-medium">Nombre / Personaje</label>
+              <label className="text-xs text-slate-300 block mb-1 font-medium">Nombre / Personaje</label>
               <input
                 type="text"
                 value={speaker2.name}
                 onChange={(e) => setSpeaker2({ ...speaker2, name: e.target.value })}
-                className="w-full bg-slate-950 border border-slate-800 focus:border-cyan-500 rounded-xl px-3 py-2 text-xs text-slate-100 focus:outline-none"
+                className="w-full bg-slate-950/60 backdrop-blur-sm border border-slate-800 focus:border-cyan-500 rounded-xl px-3 py-2 text-xs text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-cyan-500/30"
                 placeholder="Ej: Elena"
               />
             </div>
             <div>
-              <label className="text-xs text-slate-400 block mb-1 font-medium">Voz Gemini</label>
+              <label className="text-xs text-slate-300 block mb-1 font-medium">Voz Gemini</label>
               <select
                 value={speaker2.voice}
                 onChange={(e) => setSpeaker2({ ...speaker2, voice: e.target.value })}
-                className="w-full bg-slate-950 border border-slate-800 focus:border-cyan-500 rounded-xl px-3 py-2 text-xs text-slate-100 focus:outline-none"
+                className="w-full bg-slate-950/60 backdrop-blur-sm border border-slate-800 focus:border-cyan-500 rounded-xl px-3 py-2 text-xs text-slate-100 focus:outline-none focus:ring-1 focus:ring-cyan-500/30"
               >
                 {voices.map((v) => (
-                  <option key={v.id} value={v.id}>
+                  <option key={v.id} value={v.id} className="bg-slate-900 text-slate-100">
                     {v.name} ({v.gender}) - {v.tag}
                   </option>
                 ))}
@@ -270,25 +270,25 @@ export const DialogueStudio: React.FC<DialogueStudioProps> = ({
       </div>
 
       {/* Dialogue Script Timeline Editor */}
-      <div className="bg-slate-900/90 rounded-2xl border border-slate-800 p-5 shadow-lg space-y-4">
+      <div className="bg-slate-900/70 backdrop-blur-md rounded-2xl border border-slate-750/80 p-5 shadow-xl space-y-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <MessageSquare className="w-4 h-4 text-indigo-400" />
             <span className="font-semibold text-sm text-white">Guión de la Conversación</span>
-            <span className="text-xs text-slate-500">({lines.length} turnos)</span>
+            <span className="text-xs text-slate-400">({lines.length} turnos)</span>
           </div>
 
           <div className="flex items-center gap-2">
             <button
               onClick={() => handleAddLine('1')}
-              className="px-2.5 py-1.5 rounded-lg bg-indigo-600/20 hover:bg-indigo-600/30 text-indigo-300 border border-indigo-500/30 text-xs font-semibold flex items-center gap-1.5 transition-all"
+              className="px-2.5 py-1.5 rounded-lg bg-indigo-600/25 hover:bg-indigo-600/40 text-indigo-200 border border-indigo-500/40 text-xs font-semibold flex items-center gap-1.5 backdrop-blur-sm transition-all cursor-pointer"
             >
               <Plus className="w-3.5 h-3.5" />
               <span>+ {speaker1.name || 'Locutor 1'}</span>
             </button>
             <button
               onClick={() => handleAddLine('2')}
-              className="px-2.5 py-1.5 rounded-lg bg-cyan-600/20 hover:bg-cyan-600/30 text-cyan-300 border border-cyan-500/30 text-xs font-semibold flex items-center gap-1.5 transition-all"
+              className="px-2.5 py-1.5 rounded-lg bg-cyan-600/25 hover:bg-cyan-600/40 text-cyan-200 border border-cyan-500/40 text-xs font-semibold flex items-center gap-1.5 backdrop-blur-sm transition-all cursor-pointer"
             >
               <Plus className="w-3.5 h-3.5" />
               <span>+ {speaker2.name || 'Locutor 2'}</span>
@@ -306,10 +306,10 @@ export const DialogueStudio: React.FC<DialogueStudioProps> = ({
             return (
               <div
                 key={line.id}
-                className={`p-3.5 rounded-xl border transition-all flex flex-col sm:flex-row items-start gap-3 ${
+                className={`p-3.5 rounded-xl border transition-all flex flex-col sm:flex-row items-start gap-3 backdrop-blur-sm ${
                   isSpk1
-                    ? 'bg-slate-950/70 border-indigo-900/40 hover:border-indigo-700/50'
-                    : 'bg-slate-950/70 border-cyan-900/40 hover:border-cyan-700/50'
+                    ? 'bg-slate-950/60 border-indigo-900/50 hover:border-indigo-700/60'
+                    : 'bg-slate-950/60 border-cyan-900/50 hover:border-cyan-700/60'
                 }`}
               >
                 {/* Speaker Selector Toggle */}
@@ -317,7 +317,7 @@ export const DialogueStudio: React.FC<DialogueStudioProps> = ({
                   <button
                     type="button"
                     onClick={() => handleToggleSpeaker(line.id)}
-                    className={`w-full py-1.5 px-2.5 rounded-lg text-xs font-semibold flex items-center justify-between transition-all ${
+                    className={`w-full py-1.5 px-2.5 rounded-lg text-xs font-semibold flex items-center justify-between transition-all cursor-pointer ${
                       isSpk1
                         ? 'bg-indigo-600 text-white shadow-sm'
                         : 'bg-cyan-600 text-white shadow-sm'
@@ -340,7 +340,7 @@ export const DialogueStudio: React.FC<DialogueStudioProps> = ({
                     value={line.text}
                     onChange={(e) => handleUpdateLineText(line.id, e.target.value)}
                     placeholder={`Escribe lo que dice ${speakerName}...`}
-                    className="w-full bg-slate-900 border border-slate-800 focus:border-indigo-500 rounded-xl p-2.5 text-xs text-slate-100 placeholder-slate-600 focus:outline-none focus:ring-1 focus:ring-indigo-500/20 resize-none font-normal"
+                    className="w-full bg-slate-900/60 backdrop-blur-sm border border-slate-800 focus:border-indigo-500 rounded-xl p-2.5 text-xs text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-indigo-500/30 resize-none font-normal"
                   />
                 </div>
 
@@ -350,7 +350,7 @@ export const DialogueStudio: React.FC<DialogueStudioProps> = ({
                     type="button"
                     disabled={lines.length <= 1}
                     onClick={() => handleDeleteLine(line.id)}
-                    className="p-1.5 rounded-lg text-slate-500 hover:text-red-400 hover:bg-slate-800/80 disabled:opacity-30 transition-all"
+                    className="p-1.5 rounded-lg text-slate-500 hover:text-red-400 hover:bg-slate-800/80 disabled:opacity-30 transition-all cursor-pointer"
                     title="Eliminar turno"
                   >
                     <Trash2 className="w-4 h-4" />
@@ -363,7 +363,7 @@ export const DialogueStudio: React.FC<DialogueStudioProps> = ({
 
         {/* Error message */}
         {errorMessage && (
-          <div className="p-3 bg-red-950/40 border border-red-800/60 rounded-xl flex items-start gap-2.5 text-xs text-red-300">
+          <div className="p-3 bg-red-950/60 backdrop-blur-sm border border-red-800/80 rounded-xl flex items-start gap-2.5 text-xs text-red-200">
             <AlertCircle className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
             <span>{errorMessage}</span>
           </div>
@@ -374,7 +374,7 @@ export const DialogueStudio: React.FC<DialogueStudioProps> = ({
           id="btn-generate-dialogue-tts"
           disabled={isGenerating}
           onClick={handleGenerateDialogue}
-          className="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-indigo-600 via-purple-600 to-cyan-600 hover:from-indigo-500 hover:to-cyan-500 text-white font-semibold text-sm shadow-xl shadow-indigo-600/30 flex items-center justify-center gap-2 hover:scale-[1.01] active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+          className="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-indigo-600 via-purple-600 to-cyan-600 hover:from-indigo-500 hover:to-cyan-500 text-white font-semibold text-sm shadow-xl shadow-indigo-600/30 flex items-center justify-center gap-2 hover:scale-[1.01] active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed transition-all cursor-pointer"
         >
           {isGenerating ? (
             <>

@@ -2,9 +2,8 @@
   "name": "Gemini TTS Studio - Inteligencia Artificial",
   "short_name": "Gemini TTS",
   "description": "Estudio profesional de Text-to-Speech con Google Gemini AI y voces hiperrealistas",
-  "start_url": "/",
+  "start_url": ".",
   "id": "/",
-  "scope": "/",
   "display": "standalone",
   "orientation": "any",
   "background_color": "#020617",
@@ -12,32 +11,16 @@
   "categories": ["productivity", "utilities", "multimedia"],
   "icons": [
     {
-      "src": "/icon.svg",
-      "sizes": "192x192 512x512 any",
+      "src": "icon.svg",
+      "sizes": "192x192 512x512",
       "type": "image/svg+xml",
       "purpose": "any"
     },
     {
-      "src": "/icon.svg",
-      "sizes": "192x192 512x512 any",
+      "src": "icon.svg",
+      "sizes": "192x192 512x512",
       "type": "image/svg+xml",
       "purpose": "maskable"
-    }
-  ],
-  "shortcuts": [
-    {
-      "name": "Voz Individual",
-      "short_name": "Voz",
-      "description": "Generar audio con una sola voz",
-      "url": "/?tab=single",
-      "icons": [{ "src": "/icon.svg", "sizes": "192x192" }]
-    },
-    {
-      "name": "Diálogo / Podcast",
-      "short_name": "Diálogo",
-      "description": "Generar conversación multi-voz",
-      "url": "/?tab=dialogue",
-      "icons": [{ "src": "/icon.svg", "sizes": "192x192" }]
     }
   ]
 }

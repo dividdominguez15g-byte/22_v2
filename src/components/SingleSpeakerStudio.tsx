@@ -167,7 +167,7 @@ export const SingleSpeakerStudio: React.FC<SingleSpeakerStudioProps> = ({
   return (
     <div id="single-speaker-studio" className="space-y-6">
       {/* Top Banner / Introduction */}
-      <div className="bg-gradient-to-r from-slate-900 via-indigo-950/40 to-slate-900 p-6 rounded-2xl border border-indigo-500/20 shadow-xl relative overflow-hidden">
+      <div className="bg-gradient-to-r from-slate-900/75 via-indigo-950/40 to-slate-900/75 backdrop-blur-md p-6 rounded-2xl border border-indigo-500/25 shadow-xl relative overflow-hidden">
         <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
@@ -186,12 +186,12 @@ export const SingleSpeakerStudio: React.FC<SingleSpeakerStudioProps> = ({
 
           {/* Quick Script Presets */}
           <div className="flex flex-wrap items-center gap-1.5 self-start md:self-auto">
-            <span className="text-xs text-slate-400 font-medium mr-1">Ejemplos:</span>
+            <span className="text-xs text-slate-300 font-medium mr-1">Ejemplos:</span>
             {SAMPLE_SCRIPTS.slice(0, 4).map((preset) => (
               <button
                 key={preset.title}
                 onClick={() => handleApplyPreset(preset)}
-                className="px-2.5 py-1 rounded-lg bg-slate-800/80 hover:bg-indigo-900/40 hover:border-indigo-500/40 text-slate-300 hover:text-white text-xs font-medium border border-slate-700 transition-all"
+                className="px-2.5 py-1 rounded-lg bg-slate-800/60 hover:bg-indigo-900/50 hover:border-indigo-500/40 text-slate-200 hover:text-white text-xs font-medium border border-slate-700/80 backdrop-blur-sm transition-all cursor-pointer"
               >
                 {preset.title}
               </button>
@@ -204,7 +204,7 @@ export const SingleSpeakerStudio: React.FC<SingleSpeakerStudioProps> = ({
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Left Column: Script Editor & AI Enhancer */}
         <div className="lg:col-span-7 space-y-4">
-          <div className="bg-slate-900/90 rounded-2xl border border-slate-800 p-5 shadow-lg space-y-4">
+          <div className="bg-slate-900/70 backdrop-blur-md rounded-2xl border border-slate-750/80 p-5 shadow-xl space-y-4">
             {/* Header of Editor */}
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
@@ -216,20 +216,20 @@ export const SingleSpeakerStudio: React.FC<SingleSpeakerStudioProps> = ({
               <div className="flex items-center gap-2">
                 <button
                   onClick={handleCopyText}
-                  className="p-1.5 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800 transition-all text-xs flex items-center gap-1"
+                  className="p-1.5 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 transition-all text-xs flex items-center gap-1 cursor-pointer"
                   title="Copiar texto"
                 >
                   {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
                 </button>
 
-                <div className="flex items-center gap-1 bg-slate-950/70 p-1 rounded-xl border border-slate-800">
+                <div className="flex items-center gap-1 bg-slate-950/60 backdrop-blur-sm p-1 rounded-xl border border-slate-800/80">
                   <span className="text-[11px] text-slate-400 px-1.5 flex items-center gap-1 font-medium">
                     <Sparkles className="w-3 h-3 text-amber-400" /> AI:
                   </span>
                   <button
                     disabled={isEnhancing}
                     onClick={() => handleEnhanceScript('punctuated')}
-                    className="px-2 py-0.5 rounded-lg text-[11px] font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 disabled:opacity-50 transition-all"
+                    className="px-2 py-0.5 rounded-lg text-[11px] font-medium bg-slate-800/80 hover:bg-slate-700 text-slate-200 disabled:opacity-50 transition-all cursor-pointer"
                     title="Añadir pausas y puntuación expresiva"
                   >
                     Pausas
@@ -237,7 +237,7 @@ export const SingleSpeakerStudio: React.FC<SingleSpeakerStudioProps> = ({
                   <button
                     disabled={isEnhancing}
                     onClick={() => handleEnhanceScript('natural')}
-                    className="px-2 py-0.5 rounded-lg text-[11px] font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 disabled:opacity-50 transition-all"
+                    className="px-2 py-0.5 rounded-lg text-[11px] font-medium bg-slate-800/80 hover:bg-slate-700 text-slate-200 disabled:opacity-50 transition-all cursor-pointer"
                     title="Optimizar ritmo y cadencia natural"
                   >
                     Fluidez
@@ -245,7 +245,7 @@ export const SingleSpeakerStudio: React.FC<SingleSpeakerStudioProps> = ({
                   <button
                     disabled={isEnhancing}
                     onClick={() => handleEnhanceScript('dramatic')}
-                    className="px-2 py-0.5 rounded-lg text-[11px] font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 disabled:opacity-50 transition-all"
+                    className="px-2 py-0.5 rounded-lg text-[11px] font-medium bg-slate-800/80 hover:bg-slate-700 text-slate-200 disabled:opacity-50 transition-all cursor-pointer"
                     title="Estilo cinematográfico"
                   >
                     Dramático
@@ -262,11 +262,11 @@ export const SingleSpeakerStudio: React.FC<SingleSpeakerStudioProps> = ({
                 value={text}
                 onChange={(e) => setText(e.target.value)}
                 placeholder="Escribe o pega aquí el texto que deseas convertir a voz..."
-                className="w-full bg-slate-950 border border-slate-700/80 focus:border-indigo-500 rounded-xl p-4 text-slate-100 placeholder-slate-500 text-sm leading-relaxed focus:outline-none focus:ring-2 focus:ring-indigo-500/20 resize-y font-normal"
+                className="w-full bg-slate-950/60 backdrop-blur-md border border-slate-700/80 focus:border-indigo-500 rounded-xl p-4 text-slate-100 placeholder-slate-400 text-sm leading-relaxed focus:outline-none focus:ring-2 focus:ring-indigo-500/30 resize-y font-normal"
               />
 
               {isEnhancing && (
-                <div className="absolute inset-0 bg-slate-950/80 backdrop-blur-sm rounded-xl flex items-center justify-center gap-2 text-indigo-300 text-sm font-medium">
+                <div className="absolute inset-0 bg-slate-950/85 backdrop-blur-sm rounded-xl flex items-center justify-center gap-2 text-indigo-300 text-sm font-medium">
                   <RotateCw className="w-4 h-4 animate-spin text-indigo-400" />
                   <span>Gemini optimizando el guión...</span>
                 </div>
@@ -275,55 +275,55 @@ export const SingleSpeakerStudio: React.FC<SingleSpeakerStudioProps> = ({
 
             {/* Quick punctuation helpers */}
             <div className="flex flex-wrap items-center justify-between gap-2 pt-1 border-t border-slate-800/80 text-xs">
-              <div className="flex items-center gap-1.5 text-slate-400">
-                <span className="text-[11px] text-slate-500">Insertar:</span>
+              <div className="flex items-center gap-1.5 text-slate-300">
+                <span className="text-[11px] text-slate-400">Insertar:</span>
                 <button
                   type="button"
                   onClick={() => setText((prev) => prev + ' ... ')}
-                  className="px-1.5 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 text-[11px] font-mono"
+                  className="px-1.5 py-0.5 rounded bg-slate-800/70 hover:bg-slate-700 text-slate-200 text-[11px] font-mono cursor-pointer"
                 >
                   ... (Pausa)
                 </button>
                 <button
                   type="button"
                   onClick={() => setText((prev) => prev + ' — ')}
-                  className="px-1.5 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 text-[11px] font-mono"
+                  className="px-1.5 py-0.5 rounded bg-slate-800/70 hover:bg-slate-700 text-slate-200 text-[11px] font-mono cursor-pointer"
                 >
                   — (Guion)
                 </button>
                 <button
                   type="button"
                   onClick={() => setText((prev) => prev + ' ¡!')}
-                  className="px-1.5 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 text-[11px] font-mono"
+                  className="px-1.5 py-0.5 rounded bg-slate-800/70 hover:bg-slate-700 text-slate-200 text-[11px] font-mono cursor-pointer"
                 >
                   ¡Énfasis!
                 </button>
               </div>
 
               {/* Stats */}
-              <div className="flex items-center gap-3 text-slate-400 text-xs">
+              <div className="flex items-center gap-3 text-slate-300 text-xs">
                 <span>
-                  <strong className="text-slate-200">{charCount}</strong> caracteres
+                  <strong className="text-white">{charCount}</strong> caracteres
                 </span>
                 <span>•</span>
                 <span>
-                  <strong className="text-slate-200">{wordCount}</strong> palabras
+                  <strong className="text-white">{wordCount}</strong> palabras
                 </span>
                 <span>•</span>
-                <span className="text-indigo-400 font-medium">
+                <span className="text-indigo-300 font-semibold">
                   ~{estimatedSeconds}s duración est.
                 </span>
               </div>
             </div>
 
             {/* Tone & Emotion Directives Section */}
-            <div className="space-y-3 pt-3 border-t border-slate-800">
+            <div className="space-y-3 pt-3 border-t border-slate-800/80">
               <div className="flex items-center justify-between">
-                <label className="text-xs font-semibold text-slate-300 flex items-center gap-1.5">
+                <label className="text-xs font-semibold text-slate-200 flex items-center gap-1.5">
                   <SlidersHorizontal className="w-3.5 h-3.5 text-indigo-400" />
                   <span>Emoción y Tono de la Voz</span>
                 </label>
-                <span className="text-[11px] text-slate-500">
+                <span className="text-[11px] text-slate-400">
                   Modula la intención y estilo de lectura
                 </span>
               </div>
@@ -338,15 +338,15 @@ export const SingleSpeakerStudio: React.FC<SingleSpeakerStudioProps> = ({
                       setSelectedTone(preset.id);
                       setCustomToneDirective('');
                     }}
-                    className={`px-3 py-2 rounded-xl text-left text-xs font-medium transition-all flex items-center justify-between border ${
+                    className={`px-3 py-2 rounded-xl text-left text-xs font-medium transition-all flex items-center justify-between border cursor-pointer ${
                       selectedTone === preset.id && !customToneDirective
-                        ? 'bg-indigo-600/20 border-indigo-500 text-indigo-200 shadow-sm'
-                        : 'bg-slate-950/60 border-slate-800 text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
+                        ? 'bg-indigo-600/30 border-indigo-400/80 text-indigo-100 shadow-md backdrop-blur-sm'
+                        : 'bg-slate-950/50 backdrop-blur-sm border-slate-800/80 text-slate-300 hover:text-white hover:bg-slate-800/60 hover:border-slate-700'
                     }`}
                   >
                     <span className="truncate">{preset.label}</span>
                     {selectedTone === preset.id && !customToneDirective && (
-                      <CheckCircle2 className="w-3.5 h-3.5 text-indigo-400 shrink-0 ml-1" />
+                      <CheckCircle2 className="w-3.5 h-3.5 text-indigo-300 shrink-0 ml-1" />
                     )}
                   </button>
                 ))}
@@ -359,14 +359,14 @@ export const SingleSpeakerStudio: React.FC<SingleSpeakerStudioProps> = ({
                   value={customToneDirective}
                   onChange={(e) => setCustomToneDirective(e.target.value)}
                   placeholder="O escribe una instrucción de tono personalizada (ej: 'Habla con suspenso y voz muy baja...')"
-                  className="w-full bg-slate-950 border border-slate-800 focus:border-indigo-500 rounded-xl px-3 py-2 text-xs text-slate-200 placeholder-slate-600 focus:outline-none focus:ring-1 focus:ring-indigo-500/20"
+                  className="w-full bg-slate-950/60 backdrop-blur-md border border-slate-800 focus:border-indigo-500 rounded-xl px-3 py-2 text-xs text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-indigo-500/30"
                 />
               </div>
             </div>
 
             {/* Error Message */}
             {errorMessage && (
-              <div className="p-3 bg-red-950/40 border border-red-800/60 rounded-xl flex items-start gap-2.5 text-xs text-red-300">
+              <div className="p-3 bg-red-950/60 backdrop-blur-sm border border-red-800/80 rounded-xl flex items-start gap-2.5 text-xs text-red-200">
                 <AlertCircle className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
                 <span>{errorMessage}</span>
               </div>
@@ -377,7 +377,7 @@ export const SingleSpeakerStudio: React.FC<SingleSpeakerStudioProps> = ({
               id="btn-generate-tts"
               disabled={isGenerating || !text.trim()}
               onClick={handleGenerate}
-              className="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-indigo-600 via-indigo-500 to-cyan-600 hover:from-indigo-500 hover:to-cyan-500 text-white font-semibold text-sm shadow-xl shadow-indigo-600/30 flex items-center justify-center gap-2 hover:scale-[1.01] active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 transition-all"
+              className="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-indigo-600 via-indigo-500 to-cyan-600 hover:from-indigo-500 hover:to-cyan-500 text-white font-semibold text-sm shadow-xl shadow-indigo-600/30 flex items-center justify-center gap-2 hover:scale-[1.01] active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 transition-all cursor-pointer"
             >
               {isGenerating ? (
                 <>
@@ -396,7 +396,7 @@ export const SingleSpeakerStudio: React.FC<SingleSpeakerStudioProps> = ({
 
         {/* Right Column: Voice Selection Grid */}
         <div className="lg:col-span-5 space-y-4">
-          <div className="bg-slate-900/90 rounded-2xl border border-slate-800 p-5 shadow-lg space-y-4">
+          <div className="bg-slate-900/70 backdrop-blur-md rounded-2xl border border-slate-750/80 p-5 shadow-xl space-y-4">
             {/* Header & Filter */}
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
@@ -405,12 +405,12 @@ export const SingleSpeakerStudio: React.FC<SingleSpeakerStudioProps> = ({
               </div>
 
               {/* Gender Filter */}
-              <div className="flex items-center bg-slate-950 rounded-lg p-0.5 border border-slate-800 text-[11px]">
+              <div className="flex items-center bg-slate-950/60 backdrop-blur-sm rounded-lg p-0.5 border border-slate-800/80 text-[11px]">
                 {(['ALL', 'Femenino', 'Masculino'] as const).map((filter) => (
                   <button
                     key={filter}
                     onClick={() => setGenderFilter(filter)}
-                    className={`px-2 py-0.5 rounded font-medium transition-all ${
+                    className={`px-2 py-0.5 rounded font-medium transition-all cursor-pointer ${
                       genderFilter === filter
                         ? 'bg-indigo-600 text-white'
                         : 'text-slate-400 hover:text-slate-200'
@@ -432,8 +432,8 @@ export const SingleSpeakerStudio: React.FC<SingleSpeakerStudioProps> = ({
                     onClick={() => onSelectVoice(voice.id)}
                     className={`p-3 rounded-xl border cursor-pointer transition-all ${
                       isSelected
-                        ? 'bg-indigo-950/40 border-indigo-500 shadow-md shadow-indigo-950/40 ring-1 ring-indigo-500/50'
-                        : 'bg-slate-950/60 border-slate-800/80 hover:border-slate-700 hover:bg-slate-800/40'
+                        ? 'bg-indigo-950/50 backdrop-blur-md border-indigo-500 shadow-md shadow-indigo-950/40 ring-1 ring-indigo-500/50'
+                        : 'bg-slate-950/50 backdrop-blur-sm border-slate-800/80 hover:border-slate-600 hover:bg-slate-800/50'
                     }`}
                   >
                     <div className="flex items-start justify-between gap-2">
@@ -466,12 +466,12 @@ export const SingleSpeakerStudio: React.FC<SingleSpeakerStudioProps> = ({
                       </div>
 
                       {/* Tag pill */}
-                      <span className="px-2 py-0.5 rounded text-[10px] font-medium bg-slate-800 text-slate-300 border border-slate-700">
+                      <span className="px-2 py-0.5 rounded text-[10px] font-medium bg-slate-800/80 text-slate-200 border border-slate-700/80 backdrop-blur-xs">
                         {voice.tag}
                       </span>
                     </div>
 
-                    <p className="text-xs text-slate-400 mt-2 leading-snug">
+                    <p className="text-xs text-slate-300 mt-2 leading-snug">
                       {voice.description}
                     </p>
                   </div>

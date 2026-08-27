@@ -43,6 +43,43 @@ export default function App() {
   const [selectedVoice, setSelectedVoice] = useState<string>('Kore');
   const [currentAudio, setCurrentAudio] = useState<GeneratedAudioItem | null>(null);
   const [history, setHistory] = useState<GeneratedAudioItem[]>([]);
+  const [customBg, setCustomBg] = useState<string | null>(() => {
+    try {
+      return localStorage.getItem('gemini_tts_custom_bg') || null;
+    } catch {
+      return null;
+    }
+  });
+  const [bgOpacity, setBgOpacity] = useState<number>(() => {
+    try {
+      const saved = localStorage.getItem('gemini_tts_bg_opacity');
+      return saved ? parseFloat(saved) : 0.3;
+    } catch {
+      return 0.3;
+    }
+  });
+
+  const handleUpdateBg = (base64OrUrl: string | null) => {
+    setCustomBg(base64OrUrl);
+    try {
+      if (base64OrUrl) {
+        localStorage.setItem('gemini_tts_custom_bg', base64OrUrl);
+      } else {
+        localStorage.removeItem('gemini_tts_custom_bg');
+      }
+    } catch (err) {
+      console.warn('Almacenando fondo solo en memoria:', err);
+    }
+  };
+
+  const handleUpdateBgOpacity = (opacity: number) => {
+    setBgOpacity(opacity);
+    try {
+      localStorage.setItem('gemini_tts_bg_opacity', opacity.toString());
+    } catch (err) {
+      console.warn('Error al guardar opacidad:', err);
+    }
+  };
 
   // Load voices from API
   useEffect(() => {
@@ -117,16 +154,40 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans pb-32 selection:bg-indigo-500/30 selection:text-indigo-200">
+    <div className="relative min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans pb-32 selection:bg-indigo-500/30 selection:text-indigo-200">
+      {/* Dynamic Background Wallpaper Layer */}
+      {customBg && (
+        <div 
+          id="custom-app-background-layer"
+          className="fixed inset-0 pointer-events-none z-0 overflow-hidden"
+          aria-hidden="true"
+        >
+          <img
+            src={customBg}
+            alt="Fondo Personalizado"
+            className="w-full h-full object-cover object-center transition-opacity duration-300 ease-in-out"
+            style={{ opacity: bgOpacity }}
+          />
+          {/* Subtle dimming to ensure pristine contrast and text legibility */}
+          <div className="absolute inset-0 bg-slate-950/25 pointer-events-none" />
+        </div>
+      )}
+
       {/* Navigation Header */}
-      <Navbar
-        activeTab={activeTab}
-        onTabChange={setActiveTab}
-        historyCount={history.length}
-      />
+      <div className="relative z-20">
+        <Navbar
+          activeTab={activeTab}
+          onTabChange={setActiveTab}
+          historyCount={history.length}
+          customBg={customBg}
+          bgOpacity={bgOpacity}
+          onUpdateBg={handleUpdateBg}
+          onUpdateBgOpacity={handleUpdateBgOpacity}
+        />
+      </div>
 
       {/* Main Container */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <main className="relative z-10 flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
         {activeTab === 'single' && (
           <SingleSpeakerStudio
             voices={voices}

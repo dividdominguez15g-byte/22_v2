@@ -201,7 +201,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
   return (
     <div
       id="global-audio-player"
-      className="fixed bottom-0 left-0 right-0 z-50 bg-slate-900/98 backdrop-blur-xl border-t border-indigo-500/30 text-white shadow-2xl shadow-indigo-950/80 transition-all"
+      className="fixed bottom-0 left-0 right-0 z-50 bg-slate-900/85 backdrop-blur-xl border-t border-indigo-500/30 text-white shadow-2xl shadow-indigo-950/80 transition-all"
     >
       <audio
         ref={audioRef}

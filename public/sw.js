@@ -1,16 +1,18 @@
 const CACHE_NAME = 'gemini-tts-v2';
 const STATIC_ASSETS = [
-  '/',
-  '/index.html',
-  '/manifest.json',
-  '/icon.svg'
+  './',
+  './index.html',
+  './manifest.json',
+  './icon.svg'
 ];
 
 // Install Event: cache core app shell
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(STATIC_ASSETS);
+      // Adding all assets might fail if they don't exist exactly as written,
+      // but index.html etc. should be there.
+      return cache.addAll(STATIC_ASSETS).catch(err => console.log('Cache addAll failed:', err));
     })
   );
   self.skipWaiting();
@@ -38,7 +40,7 @@ self.addEventListener('fetch', (event) => {
   const url = new URL(request.url);
 
   // 1. Skip non-GET requests and API endpoints (always use live server for AI synthesis)
-  if (request.method !== 'GET' || url.pathname.startsWith('/api/')) {
+  if (request.method !== 'GET' || url.pathname.includes('/api/')) {
     return;
   }
 
@@ -61,7 +63,7 @@ self.addEventListener('fetch', (event) => {
         .catch(async () => {
           const cached = await caches.match(request);
           if (cached) return cached;
-          return caches.match('/index.html');
+          return caches.match('./index.html');
         })
     );
     return;
